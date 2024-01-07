@@ -74,7 +74,7 @@
                         
                        
                         <li>
-                            <a href="/home/departments"><i class="fa fa-hospital-o"></i> <span>Departments</span></a>
+                            <a href="/departments"><i class="fa fa-hospital-o"></i> <span>Departments</span></a>
                         </li>
 
                         <li>
@@ -88,23 +88,25 @@
             <div class="content">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
-                        <h4 class="page-title">Add Doctor</h4>
+                        <h4 class="page-title">Edit Patient Details</h4>
                     </div>
                 </div>
                 <div class="row">
+
                     <div class="col-lg-8 offset-lg-2">
-                        <form method="POST" enctype="multipart/form-data">
+                        <form method="POST">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
+                                        <% for (var i = 0; i < list.length; i++){ %>
                                         <label>First Name <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="first_name">
+                                        <input class="form-control" type="text" name="first_name" value="<%= list[i].first_name %>">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Last Name</label>
-                                        <input class="form-control" type="text" name="last_name">
+                                        <input class="form-control" type="text" name="last_name" value="<%= list[i].last_name %>">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -112,8 +114,8 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label>Email <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="email" name="email">
+                                        <label>Password Number </label>
+                                        <input class="form-control" type="text" name="passwordnum" value="<%= list[i].passwordnum %>">
                                     </div>
                                 </div>
                                
@@ -122,7 +124,7 @@
                                     <div class="form-group">
                                         <label>Date of Birth</label>
                                         <div class="cal-icon">
-                                            <input type="text" class="form-control datetimepicker" name="dob">
+                                            <input type="text" class="form-control datetimepicker" name="dob" value="<%= list[i].dob %>">
                                         </div>
                                     </div>
                                 </div>
@@ -146,19 +148,15 @@
 										<div class="col-sm-12">
 											<div class="form-group">
 												<label>Address</label>
-												<input type="text" class="form-control " name="address">
+												<input type="text" class="form-control " name="address" value="<%= list[i].address %>">
 											</div>
 										</div>
-										
-										
-										
-										
 									</div>
 								</div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Phone </label>
-                                        <input class="form-control" type="text" name="phone">
+                                        <input class="form-control" type="text" name="phone" value="<%= list[i].phone %>">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -169,7 +167,7 @@
 												<img alt="" src="/assets/img/user.jpg">
 											</div>
 											<div class="upload-input">
-												<input type="file" class="form-control" name="image">
+												<input type="file" class="form-control" name="image" value="<%= list[i].image %>">
 											</div>
 										</div>
 									</div>
@@ -178,58 +176,31 @@
                                 <div class="col-sm-6 col-md-6 col-lg-3">
                                     <div class="form-group">
                                         <label>Department</label>
-                                        
-                                        <select class="" name="department">
-                                            <% for (var i = 0; i < list.length; i++){ %>
-                                            <option name="<%= list[i].department_name%>"><%= list[i].department_name%></option>
-                                            <% } %>
+                                        <select class="form-control select" name="department" value="<%= list[i].department %>">
+                                            <option value="Receptionist">Receptionist</option>
+                                            <option value="Computer Operator">Computer Operator</option>
+                                            <option value="Bio-Metric Operator">Bio-Metric Operator</option>
+                                            <option value="Lab Operator" >Lab Operator</option>
+                                            <option value="BMLT" >BMLT</option>
+                                            <option value="Physician" >Physician</option>
+                                            <option value="Radiologist" >Radiologist</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-							<div class="form-group">
-                                <label>Short Biography</label>
-                                <textarea class="form-control" rows="3" cols="30" name="biography"></textarea>
-                            </div>
+                            <% } %>
                    
                             <div class="m-t-20 text-center">
-                                <button class="btn btn-primary submit-btn">Create Doctor</button>
+                                <button class="btn btn-primary submit-btn">Edit Patient</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-			<div class="notification-box">
-                <div class="msg-sidebar notifications msg-noti">
-                    <div class="topnav-dropdown-header">
-                        <span>Messages</span>
-                    </div>
-                    <div class="drop-scroll msg-list-scroll" id="msg_list">
-                        <ul class="list-box">
-                            <li>
-                                <a href="chat.html">
-                                    <div class="list-item">
-                                        <div class="list-left">
-                                            <span class="avatar">R</span>
-                                        </div>
-                                        <div class="list-body">
-                                            <span class="message-author">Richard Miles </span>
-                                            <span class="message-time">12:28 AM</span>
-                                            <div class="clearfix"></div>
-                                            <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                </div>
-            </div>
         </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
-    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="/ass/ets/js/jquery-3.2.1.min.js"></script>
 	<script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/jquery.slimscroll.js"></script>
