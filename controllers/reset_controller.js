@@ -32,7 +32,7 @@ router.post('/', function (req, res) {
                 service: 'Gmail',
                 auth: {
                     user: 'sushantpandit0627@gmail.com',
-                    pass: 'sushant_06_27'
+                    pass: 'wfjp chht hubx rdje'
                 }
             });
             var mailOptions = {
