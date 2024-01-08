@@ -27,6 +27,7 @@ var employee = require ('./controllers/employee.js');
 var logout = require ('./controllers/logout');
 var verify = require ('./controllers/verify');
 var landing = require ('./controllers/landing');
+var patients = require ('./controllers/patients.js');
 
 
 
@@ -60,5 +61,5 @@ app.use('/employee',employee);
 app.use ('/logout',logout);
 app.use ('/verify', verify);
 app.use ('/',landing);
+app.use ('/patients', patients);
 
-// app.use('/doctors/add_doctor',add_doc);

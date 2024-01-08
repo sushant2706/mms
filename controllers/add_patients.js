@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var db = require.main.require('./models/db_controller');
+var db = require.main.require ('./models/db_controller');
 var fileUpload = require('express-fileupload');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 router.get('/', function (req, res) {
-    res.render('add_doctor.ejs');
+    res.render('add_patients.ejs');
 });
 
 router.post('/', function (req, res) {
@@ -24,13 +24,13 @@ router.post('/', function (req, res) {
             return res.status(500).send(err);
         }
 
-        db.add_doctor(req.body.first_name, req.body.last_name, req.body.email, req.body.dob, req.body.gender, req.body.address, req.body.phone, req.body.image, req.body.department, req.body.biography);
+        db.add_patient(req.body.first_name, req.body.last_name, req.body.passwordnum, req.body.dob, req.body.gender, req.body.address, req.body.phone, req.body.image, req.body.fname);
 
         // Assuming db.add_doctor returns a promise or executes a callback
         // You may need to handle its success or failure accordingly
 
-        console.log('1 doctor inserted');
-        res.redirect('add_doctor');
+        console.log('1 patient inserted');
+        res.redirect('add_patients');
     });
 });
 

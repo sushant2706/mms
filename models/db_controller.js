@@ -579,3 +579,98 @@ module.exports.edit_leave = function (
     id;
   con.query(query, callback);
 };
+
+module.exports.add_patient = function (
+  first_name,
+  last_name,
+  passwordnum,
+  dob,
+  gender,
+  address,
+  phone,
+  image,
+  fname,
+  callback
+) {
+  var query =
+    "INSERT INTO `patient`(`first_name`,`last_name`,`passwordnum`,`dob`,`gender`,`address`,`phone`,`image`,`fname`) values ('" +
+    first_name +
+    "','" +
+    last_name +
+    "','" +
+    passwordnum +
+    "','" +
+    dob +
+    "','" +
+    gender +
+    "','" +
+    address +
+    "','" +
+    phone +
+    "','" +
+    image +
+    "','" +
+    fname +
+    "')";
+  con.query(query, callback);
+  console.log(query);
+};
+
+module.exports.getAllpatient = function (callback) {
+  var query = "select * from patient";
+  con.query(query, callback);
+};
+
+module.exports.getpatientbyId = function (id, callback) {
+  var query = "select * from patient where id =" + id;
+  con.query(query, callback);
+};
+
+module.exports.editpatient = function (
+  id,
+  first_name,
+  last_name,
+  passwordnum,
+  dob,
+  gender,
+  address,
+  phone,
+  image,
+  fname,
+  callback
+) {
+  var query =
+    "update `patient` set `first_name`='" +
+    first_name +
+    "', `last_name`='" +
+    last_name +
+    "', `passwordnum`='" +
+    passwordnum +
+    "', `dob`='" +
+    dob +
+    "',`gender`='" +
+    gender +
+    "',`address`='" +
+    address +
+    "',`phone`='" +
+    phone +
+    "',`image`='" +
+    image +
+    "',`fname`='" +
+    fname +
+    "' where id=" +
+    id;
+  con.query(query, callback);
+  // console.log(query);
+};
+
+module.exports.deletepatient = function (id, callback) {
+  var query = "delete from patient where id=" + id;
+  con.query(query, callback);
+};
+
+module.exports.searchpatient = function (key, callback) {
+  var query = 'SELECT  *from patient where first_name like "%' + key + '%"';
+  con.query(query, callback);
+  console.log(query);
+};
