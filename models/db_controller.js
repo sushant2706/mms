@@ -13,7 +13,7 @@ con.connect(function (err) {
   if (err) {
     throw err;
   } else {
-    console.log("you are connected");
+    console.log("You are connected");
   }
 });
 

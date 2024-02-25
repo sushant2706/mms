@@ -26,7 +26,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
-    var email_status = "not_verified";
+    var email_status = "verified";
     var email = req.body.email;
     var username = req.body.username;
 
@@ -42,54 +42,9 @@ router.post(
 
     db.getuserid(email, function (err, result) {
       var id = result[0].id;
-      var output =
-        `
-            <p>Dear  ` +
-        username +
-        `, </p>
-            <p>Thanks for sign up. Your verification id and token is given below :  </p>
-           
-            <ul>
-                <li>User ID: ` +
-        id +
-        `</li>
-                <li>Token: ` +
-        token +
-        `</li>
-            </ul>
-            <p>verify Link: <a href="http://localhost:3000/verify">Verify</a></p>
-            
-            <p><strong>This is an automatically generated mail. Please do not reply back.</strong></p>
-            
-            <p>Regards,</p>
-            <p>H Manager</p>
-        `;
-
-      var transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "sushantpandit0627@gmail.com",
-          pass: "wfjp chht hubx rdje",
-        },
-      });
-      var mailOptions = {
-        from: "mms@gmail.com",
-        to: email,
-        subject: "Email Verification", // Subject line
-        html: output, // plain text body
-      };
-
-      transporter.sendMail(mailOptions, function (err, info) {
-        if (err) {
-          return console.log(err);
-        }
-        console.log(info);
-      });
-
-      res.send("Check you email for token to verify");
     });
 
-    // res.redirect('login');
+    res.redirect('login');
   }
 );
 

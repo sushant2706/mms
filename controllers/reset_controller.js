@@ -6,13 +6,14 @@ var nodemailer = require('nodemailer');
 var randomToken = require('random-token');
 var db = require.main.require('./models/db_controller');
 
-// router.get('/', function(req, res){
-//     res.render('resetpassword.ejs')
-// })
+router.get('/', function(req, res){
+    res.render('resetpassword.ejs')
+})
 
 router.post('/', function (req, res) {
     var email = req.body.email;
-    db.findOne(email, function (err, result) {
+    db.findOne(email, function (err, resultone) {
+        console.log(resultone)
         if (!resultone) {
             console.log("Mail does not exist");
             res.send("Mail does not exist")
@@ -32,9 +33,10 @@ router.post('/', function (req, res) {
                 service: 'Gmail',
                 auth: {
                     user: 'sushantpandit0627@gmail.com',
-                    pass: 'wfjp chht hubx rdje'
+                    pass: 'S_ush@n_T_06_27'
                 }
             });
+            console.log(transporter)
             var mailOptions = {
                 from: 'MMS Team',
                 to: email,
@@ -45,7 +47,7 @@ router.post('/', function (req, res) {
                 if (error) {
                     return console.log(err)
                 } else {
-                    console.log(info);
+                    console.log('mailInfo',info);
                 }
             })
         })

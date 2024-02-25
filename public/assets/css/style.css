@@ -1,8 +1,3 @@
-/*
-Author       : Dreamguys
-Template Name: PreClinic - Medical and Hospital Admin Template
-Version      : 1.0
-*/
 
 /*============================
  [Table of CSS]
@@ -4913,4 +4908,152 @@ blockquote p {
 		margin: 0 auto;
 		margin-bottom: 10px;
 	}
+}
+.loader {
+	border: 16px solid #f3f3f3; /* Light grey */
+	border-top: 16px solid #3498db; /* Blue */
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
+	margin-bottom: 20px;
+	margin: auto;
+  }
+
+.loading{
+	display: none;
+}  
+.loading.show{
+	display: block;
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+
+  .dialog-box{
+	position: fixed;
+	top:0;
+	right:0;
+	bottom:0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.4);
+	display: none;
+  }
+  .dialog-box.show{
+	display: flex;
+  }
+  .dialog-box .dialog-data {
+	background: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding:80px 40px;
+	flex-direction: column;
+	gap: 30px;
+	position: relative;
+  }
+  .successfull{
+	display: none;
+	
+  }
+  .successfull.show{
+	display: block;
+  }
+  .close-button{
+	position: absolute;
+	top: 20px;
+	right:20px;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	font-size: 30px;
+  }
+
+  .add-user-btn{
+	margin: 20px 0;
+	outline: none;
+	padding: 10px 12px;
+	color: white;
+	cursor: pointer;
+	border: none;
+	border-radius: 5px;
+	width: 100%;
+	background-color: #46af50;
+  }
+
+  .upload-image-btn{
+	margin: 20px 0;
+	outline: none;
+	padding: 10px 12px;
+	color: white;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	width: 100%;
+	background-color: #008cff;
+  }
+
+  .add-user-btn:hover{
+	background-color: #388e3c;
+	color: white;
+	border: 1px solid white;
+  } 
+
+  
+  .upload-image-btn:hover{
+	background-color: #0077cc;
+	color: white;
+	border: 1px solid white;
+  }
+  .dashboard-navigation ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.dashboard-navigation ul li {
+	background-color: white;
+    border: 1px solid #ccc;
+    width: 500px; /* Fixed width for all boxes */
+    height: 200px; /* Fixed height for all boxes */
+    padding: 185px; /* Adjust padding as needed */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+	display: flex;
+	justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.dashboard-navigation ul li a {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.dashboard-navigation ul li i {
+    font-size: 80px; /* Adjust icon size as needed */
+}
+
+.dashboard-navigation ul li span {
+    font-size: 30px; /* Increase font size for name */
+    font-weight: bold; /* Make the name bold */
+}
+
+.dashboard-navigation ul li:hover {
+    background-color: #008cff;
+    color: white;
+}
+
+.dashboard-navigation ul li:hover a {
+    color: white;
 }

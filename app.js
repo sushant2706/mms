@@ -11,10 +11,9 @@ var crypto = require ('crypto');
 var expressValidator = require ('express-validator');
 var  sweetalert = require('sweetalert2');
 var app = express();
-
-
-
 var bodyParser = require ('body-parser');
+
+
 
 var  login = require ('./controllers/login');
 var  home = require ('./controllers/home');
@@ -28,7 +27,9 @@ var logout = require ('./controllers/logout');
 var verify = require ('./controllers/verify');
 var landing = require ('./controllers/landing');
 var patients = require ('./controllers/patients.js');
-
+var verification = require ('./controllers/verification.js');
+var report = require ('./controllers/report');
+var templete = require ('./controllers/templete');
 
 
 var app = express();
@@ -37,18 +38,15 @@ var app = express();
 app.set('view engine ', 'ejs');
 
 
-
-
 app.use(express.static('./public'));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 app.use(cookie());
-//app.use(expressValidator());
+
 
 
 var server =app.listen(3000 , function(){
-
-    console.log('server started');
+    console.log('Server started');
 });
 
 app.use('/login' ,login);
@@ -60,6 +58,8 @@ app.use('/setpassword',set);
 app.use('/employee',employee);
 app.use ('/logout',logout);
 app.use ('/verify', verify);
-app.use ('/',landing);
+app.use ('/',signup);
 app.use ('/patients', patients);
-
+app.use ('/verification', verification);
+app.use ('/report', report);
+app.use ('/templete', templete);
