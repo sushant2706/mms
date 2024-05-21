@@ -70,7 +70,7 @@ router.post('/edit_doctor/:id', function(req, res) {
     var id = req.params.id;
     db.editDoc(id, req.body.first_name, req.body.last_name, req.body.email, req.body.dob, req.body.gender, req.body.address, req.body.phone, req.body.image, req.body.department, req.body.biography, function(err, result) {
         if (err) throw err;
-        res.redirect('back');
+        res.redirect('/doctors');
     });
 });
 

@@ -63,7 +63,7 @@
 						<li>
                             <a href="/doctors"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="/patients"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
                         </li>
                         
@@ -81,7 +81,7 @@
 						<li>
                             <a href="/report"><i class="fa fa-file-text-o"></i> <span>Report</span></a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="/payment"><i class="fa fa-file-text-o"></i> <span>Payment</span></a>
                         </li>
                     </ul>
@@ -90,24 +90,6 @@
         </div>
         <div class="page-wrapper">
             <div class="content">
-                <div class="row">
-                    <div class="col-sm-4 col-3">
-                        <h4 class="page-title">Patients</h4>
-                    </div>
-                    <div class="col-sm-8 col-9 text-right m-b-20">
-                        <a href="http://localhost:3000/patients/add_patients" class="btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Add Patient</a>
-                    </div>
-                    <form action="" method="POST">
-                    <div class="col-sm-6 col-md-12">
-                        <div class="form-group form-focus">
-                            <label class="focus-label" height=""></label>
-                            <input type="text" class="form-control floating" name="search" placeholder="" >
-                            
-                            <button formaction="/patients/search" type="submit" class="btn btn-success">Search</button>
-                        </div>
-                </div>
-                    </form>
-                </div>
                 <div class="row">
                     <div class="col-md-12">
 						<div class="table-responsive">
@@ -119,11 +101,8 @@
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Password Number</th>
-                                        <th>DOB</th>
-                                        <th>Gender</th>
-                                        <th>Address</th>
                                         <th>Phone</th>
-                                        <th>Father's Name</th>
+                                        <!-- <th>Payment</th> -->
                                         <th class="text-right">Action</th>
                                     </tr>
                                 </thead>
@@ -137,19 +116,15 @@
                                         <td><%= list[i].first_name %></td>
                                         <td><%= list[i].last_name %></td>
                                         <td><%= list[i].passwordnum %></td>
-                                        <td><%= list[i].dob %></td>
-                                        <td><%= list[i].gender %></td>
-                                        <td><%= list[i].address %></td>
                                         <td><%= list[i].phone %></td>
-                                        <td><%= list[i].fname %></td>
-                                        <td class="text-right">
-                                            <div class="dropdown dropdown-action">
-                                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="http://localhost:3000/patients/edit_patient/<%= list[i].id %>"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                    <a class="dropdown-item" href="http://localhost:3000/patients/delete_patient/<%= list[i].id %>" ><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                </div>
-                                            </div>
+                                        <!-- <td><%= list[i].payment_done %></td> -->
+                                        <td class="text-right"> 
+                                            <% if(list[i].payment != "true") { %>
+                                                <button type="button" class="add-user-btn" onclick="Payment('<%= list[i].id %>')">Pay</button>
+                                            <% }else { %>
+                                                paid
+                                            <% } %>    
+                                            <!-- <button>Pay</button> -->
                                         </td>
                                         <% } %>           
                                     </tr>	
@@ -172,6 +147,22 @@
     <script  type="text/javascript" src="/assets/js/typeahead.min.js"></script>
     
     <script src="/assets/js/app.js"></script>
+    <script>
+        function Payment(id) {
+            console.log(id,"id")
+            const url = '/payment/'+id;
+            fetch(url, {
+                method: 'POST',
+                body:JSON.stringify({id:id}),
+            }).then(res=>res.json()).then(response => 
+                    {
+                        console.log(response,"response")
+                        window.location.href = response.url;
+                    }
+                )
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
 </body>
 
 </html>

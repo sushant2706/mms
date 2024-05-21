@@ -12,6 +12,7 @@ var expressValidator = require ('express-validator');
 var  sweetalert = require('sweetalert2');
 var app = express();
 var bodyParser = require ('body-parser');
+var stripe = require ('stripe')
 
 
 
@@ -30,6 +31,9 @@ var patients = require ('./controllers/patients.js');
 var verification = require ('./controllers/verification.js');
 var report = require ('./controllers/report');
 var templete = require ('./controllers/templete');
+var payment = require ('./controllers/payment');
+var success = require ('./controllers/success');
+var cancel = require ('./controllers/cancel');
 
 
 var app = express();
@@ -49,13 +53,13 @@ var server =app.listen(3000 , function(){
     console.log('Server started');
 });
 
-app.use('/login' ,login);
-app.use('/home' , home);
-app.use('/signup' , signup);
-app.use('/doctors', doc_controller);
-app.use('/resetpassword' ,reset);
-app.use('/setpassword',set);
-app.use('/employee',employee);
+app.use ('/login' ,login);
+app.use ('/home' , home);
+app.use ('/signup' , signup);
+app.use ('/doctors', doc_controller);
+app.use ('/resetpassword' ,reset);
+app.use ('/setpassword',set);
+app.use ('/employee',employee);
 app.use ('/logout',logout);
 app.use ('/verify', verify);
 app.use ('/',signup);
@@ -63,3 +67,6 @@ app.use ('/patients', patients);
 app.use ('/verification', verification);
 app.use ('/report', report);
 app.use ('/templete', templete);
+app.use ('/payment', payment);
+app.use ('/success', success);
+app.use ('/cancel', cancel);

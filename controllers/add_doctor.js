@@ -26,8 +26,7 @@ router.post('/', function (req, res) {
 
         db.add_doctor(req.body.first_name, req.body.last_name, req.body.email, req.body.dob, req.body.gender, req.body.address, req.body.phone, req.body.image, req.body.department, req.body.biography);
 
-        // Assuming db.add_doctor returns a promise or executes a callback
-        // You may need to handle its success or failure accordingly
+        
 
         console.log('1 doctor inserted');
         res.redirect('add_doctor');

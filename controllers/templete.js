@@ -13,9 +13,6 @@ router.get('*', function(req, res, next){
 
 
 router.get('/',function(req,res){
-    // db.getAllpatient(function(err,result){
-    //     res.render('templete.ejs',{patient : result});
-    // })
     res.render('templete.ejs',{patient : req});
 });
 

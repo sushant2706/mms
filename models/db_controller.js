@@ -180,71 +180,6 @@ module.exports.deleteEmp = function (id, callback) {
   con.query(query, callback);
 };
 
-module.exports.deletemed = function (id, callback) {
-  //console.log("i m here");
-  var query = "delete from store where id=" + id;
-  con.query(query, callback);
-};
-
-module.exports.postcomplain = function (
-  message,
-  name,
-  email,
-  subject,
-  callback
-) {
-  var query =
-    "insert into complain (message,name,email,subject) values ('" +
-    message +
-    "','" +
-    name +
-    "','" +
-    email +
-    "','" +
-    subject +
-    "')";
-  console.log(query);
-  con.query(query, callback);
-};
-
-module.exports.getcomplain = function (callback) {
-  var query = "select * from complain";
-  con.query(query, callback);
-};
-
-module.exports.add_appointment = function (
-  p_name,
-  department,
-  d_name,
-  date,
-  time,
-  email,
-  phone,
-  callback
-) {
-  var query =
-    "insert into appointment (patient_name,department,doctor_name,date,time,email,phone) values ('" +
-    p_name +
-    "','" +
-    department +
-    "','" +
-    d_name +
-    "','" +
-    date +
-    "','" +
-    time +
-    "','" +
-    email +
-    "','" +
-    phone +
-    "')";
-  con.query(query, callback);
-};
-
-module.exports.getallappointment = function (callback) {
-  var query = "select * from appointment";
-  con.query(query, callback);
-};
 
 module.exports.searchDoc = function (key, callback) {
   var query = 'SELECT  *from doctor where first_name like "%' + key + '%"';
@@ -252,10 +187,6 @@ module.exports.searchDoc = function (key, callback) {
   console.log(query);
 };
 
-module.exports.searchmed = function (key, callback) {
-  var query = 'SELECT  *from store where name like "%' + key + '%"';
-  con.query(query, callback);
-};
 
 module.exports.searchEmp = function (key, callback) {
   var query = 'SELECT  *from employee where name  like "%' + key + '%"';
@@ -263,72 +194,15 @@ module.exports.searchEmp = function (key, callback) {
   console.log(query);
 };
 
-module.exports.getappointmentbyid = function (id, callback) {
-  var query = "select * from appointment where id=" + id;
-  console.log(query);
-  con.query(query, callback);
-};
-
-module.exports.editappointment = function (
-  id,
-  p_name,
-  department,
-  d_name,
-  date,
-  time,
-  email,
-  phone,
-  callback
-) {
-  var query =
-    "update appointment set patient_name='" +
-    p_name +
-    "',department='" +
-    department +
-    "',doctor_name='" +
-    d_name +
-    "',date='" +
-    date +
-    "',time='" +
-    time +
-    "',email='" +
-    email +
-    "',phone='" +
-    phone +
-    "' where id=" +
-    id;
-  con.query(query, callback);
-};
-
-module.exports.deleteappointment = function (id, callback) {
-  var query = "delete from appointment where id=" + id;
-  con.query(query, callback);
-};
-//module.exports =router;
-
 module.exports.findOne = function (email, callback) {
   var query = "select *from users where email='" + email + "'";
   con.query(query, callback);
   console.log(query);
 };
 
-module.exports.temp = function (id, email, token, callback) {
-  var query =
-    "insert into `temp` (`id`,`email`,`token`) values ('" +
-    id +
-    "','" +
-    email +
-    "','" +
-    token +
-    "')";
-  con.query(query, callback);
-};
 
-module.exports.checktoken = function (token, callback) {
-  var query = "select *from temp where token='" + token + "'";
-  con.query(query, callback);
-  console.log(query);
-};
+
+
 
 module.exports.setpassword = function (id, newpassword, callback) {
   var query =
@@ -363,114 +237,9 @@ module.exports.add_employee = function (
   console.log(query);
 };
 
-module.exports.addMed = function (
-  name,
-  p_date,
-  expire,
-  e_date,
-  price,
-  quantity,
-  callback
-) {
-  var query =
-    "Insert into `store` (name,p_date,expire,expire_end,price,quantity) values('" +
-    name +
-    "','" +
-    p_date +
-    "','" +
-    expire +
-    "','" +
-    e_date +
-    "','" +
-    price +
-    "','" +
-    quantity +
-    "')";
-  console.log(query);
-  con.query(query, callback);
-};
-
-module.exports.getMedbyId = function (id, callback) {
-  var query = "select * from store where id=" + id;
-  con.query(query, callback);
-};
-
-module.exports.editmed = function (
-  id,
-  name,
-  p_date,
-  expire,
-  e_date,
-  price,
-  quantity,
-  callback
-) {
-  var query =
-    "update store set name='" +
-    name +
-    "', p_date='" +
-    p_date +
-    "',expire='" +
-    expire +
-    "' ,expire_end='" +
-    e_date +
-    "',price='" +
-    price +
-    "',quantity='" +
-    quantity +
-    "' where id=" +
-    id;
-  console.log(query);
-  con.query(query, callback);
-};
-
-module.exports.getallmed = function (callback) {
-  var query = "select *from store order by id desc";
-  console.log(query);
-  con.query(query, callback);
-};
-
 module.exports.getAllemployee = function (callback) {
   var query = "select * from employee";
   con.query(query, callback);
-};
-
-module.exports.add_leave = function (
-  name,
-  id,
-  type,
-  from,
-  to,
-  reason,
-  callback
-) {
-  var query =
-    "Insert into `leaves` (`employee`,`emp_id`,`leave_type`,`date_from`,`date_to`,`reason`) values ('" +
-    name +
-    "','" +
-    id +
-    "','" +
-    type +
-    "','" +
-    from +
-    "','" +
-    to +
-    "','" +
-    reason +
-    "')";
-  console.log(query);
-  con.query(query, callback);
-};
-
-module.exports.getAllLeave = function (callback) {
-  var query = "Select * from leaves";
-  con.query(query, callback);
-};
-
-module.exports.matchtoken = function (id, token, callback) {
-  var query = "select * from `verify` where token='" + token + "' and id=" + id;
-  con.query(query, callback);
-  console.log(query);
 };
 
 module.exports.updateverify = function (email, email_status, callback) {
@@ -543,41 +312,6 @@ module.exports.edit_profile = function (
     id;
   con.query(query, callback);
   console.log(query);
-};
-
-module.exports.getleavebyid = function (id, callback) {
-  var query = "select * from leaves where id=" + id;
-  con.query(query, callback);
-};
-
-module.exports.deleteleave = function (id, callback) {
-  var query = "delete  from leaves where id=" + id;
-  con.query(query, callback);
-};
-
-module.exports.edit_leave = function (
-  id,
-  name,
-  leave_type,
-  from,
-  to,
-  reason,
-  callback
-) {
-  var query =
-    "update leaves set employee='" +
-    name +
-    "',leave_type='" +
-    leave_type +
-    "',date_from='" +
-    from +
-    "',date_to='" +
-    to +
-    "',reason='" +
-    reason +
-    "' where id=" +
-    id;
-  con.query(query, callback);
 };
 
 module.exports.add_patient = function (
@@ -673,4 +407,63 @@ module.exports.searchpatient = function (key, callback) {
   var query = 'SELECT  *from patient where first_name like "%' + key + '%"';
   con.query(query, callback);
   console.log(query);
+};
+
+module.exports.add_payment = function (
+  first_name,
+  last_name,
+  passwordnum,
+  dob,
+  gender,
+  address,
+  phone,
+  image,
+  fname,
+  callback
+) {
+  var query =
+    "INSERT INTO `patient`(`first_name`,`last_name`,`passwordnum`,`dob`,`gender`,`address`,`phone`,`image`,`fname`) values ('" +
+    first_name +
+    "','" +
+    last_name +
+    "','" +
+    passwordnum +
+    "','" +
+    dob +
+    "','" +
+    gender +
+    "','" +
+    address +
+    "','" +
+    phone +
+    "','" +
+    image +
+    "','" +
+    fname +
+    "')";
+  con.query(query, callback);
+  console.log(query);
+};
+
+module.exports.getAllpayment = function (callback) {
+  var query = "select * from payment";
+  con.query(query, callback);
+};
+
+module.exports.getpaymentbyId = function (id, callback) {
+  var query = "select * from patient where id =" + id;
+  con.query(query, callback);
+};
+
+module.exports.editpayment = function (
+  id,callback
+) {
+  var query =
+    "update patient set payment='" +
+    "true" +
+    "' where id=" +
+    id 
+  console.log(query);
+
+  con.query(query,callback);
 };
